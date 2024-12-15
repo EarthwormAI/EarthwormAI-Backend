@@ -1,0 +1,41 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  run-ci:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    name: Run Type Check & Linters
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Check types
+        run: npm run type-check
+
+      - name: Check linting
+        run: npm run lint
+
+      - name: Check Prettier
+        run: npm run format:ci
+
+      - name: Check commits messages
+        uses: wagoid/commitlint-github-action@v6

@@ -1,0 +1,20 @@
+/** @type {import('prettier').Config} */
+module.exports = {
+  endOfLine: 'lf',
+  semi: false,
+  singleQuote: true,
+  tabWidth: 2,
+  printWidth: 120,
+  trailingComma: 'es5',
+  quoteProps: 'consistent',
+  jsxSingleQuote: false,
+  bracketSpacing: true,
+  arrowParens: 'always',
+  proseWrap: 'preserve',
+  htmlWhitespaceSensitivity: 'css',
+  vueIndentScriptAndStyle: false,
+  embeddedLanguageFormatting: 'auto',
+  parser: 'typescript',
+  requirePragma: false,
+  insertPragma: false,
+}
